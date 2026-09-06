@@ -6,6 +6,18 @@ struct FeatureRouteView: View {
 
     var body: some View {
         switch route {
+        case .myDay:
+            MyDayLiveView(session: session)
+        case .factionOverview:
+            FactionOverviewLiveView(session: session)
+        case .directory:
+            FactionDirectoryLiveView(session: session)
+        case .rankedWar:
+            RankedWarLiveView(session: session)
+        case .organizedCrime:
+            OrganizedCrimeLiveView(session: session)
+        case .chain:
+            ChainLiveView(session: session)
         case .leadershipPeople:
             LeadershipGroupView(title: "People & Activity", subtitle: "Member review and faction participation tools.", accent: TornTheme.purple, rows: [
                 ("Activity Tracker", "Faction-wide participation and activity scan", "Open", "person.3.fill", TornTheme.purple, .activityTracker),
@@ -113,20 +125,14 @@ private struct CommandFeatureStatusView: View {
 
     var descriptor: (String, String, Color, String) {
         switch route {
-        case .myDay: return ("My Day", "Personal readiness and daily Torn status.", TornTheme.green, "LIVE DATA PORT IN PROGRESS")
         case .training: return ("Training & Progress", "Battle-stat and Xanax baseline tracking plus faction guides.", TornTheme.purple, "ANDROID PARITY MAPPED")
         case .warPrep: return ("My War Prep", "Personal readiness checklist for Ranked War.", TornTheme.gold, "ANDROID PARITY MAPPED")
         case .alerts: return ("Notification Inbox", "Faction notices and TornFCA alerts.", TornTheme.blue, "PUSH BACKEND NOT WIRED")
         case .factionChat: return ("Faction Chat", "TornFCA native General / War / OC / Leadership channels.", TornTheme.blue, "COMMUNITY BACKEND NOT WIRED")
-        case .factionOverview: return ("Faction Overview", "Member-safe faction status, OC, chain and war readiness.", TornTheme.gold, "LIVE DATA PORT IN PROGRESS")
-        case .directory: return ("Faction Directory", "Search the current faction roster.", TornTheme.purple, "LIVE DATA PORT IN PROGRESS")
         case .voting: return ("Faction Voting", "Whole faction, leadership, member and split-chamber polls.", TornTheme.green, "VOTING BACKEND NOT WIRED")
         case .resources: return ("Faction Resources", "Faction rules, guides and reference material.", TornTheme.blue, "CONTENT BACKEND NOT WIRED")
         case .announcements: return ("Faction Announcements", "Current faction notices and authorized publishing.", TornTheme.gold, "COMMUNITY BACKEND NOT WIRED")
-        case .organizedCrime: return ("My Organized Crime", "Your current OC assignment and readiness.", TornTheme.green, "LIVE DATA PORT IN PROGRESS")
-        case .chain: return ("Chain Status", "Current chain context and participation.", TornTheme.gold, "LIVE DATA PORT IN PROGRESS")
         case .strengthIntel: return ("Faction Strength Intel", "Optional FFScouter estimates and comparison.", TornTheme.purple, "PROVIDER INTEGRATION NOT WIRED")
-        case .rankedWar: return ("Ranked War", "Current matchup, score, timing and completed-war history.", TornTheme.red, "LIVE DATA PORT IN PROGRESS")
         case .territories: return ("Territories", "Walls, assaults and territory status.", TornTheme.gold, "ANDROID PARITY MAPPED")
         case .needsAttention: return ("Needs Attention", "Inactivity, war gaps, OC gaps and availability exceptions.", TornTheme.gold, "LEADERSHIP DATA PORT PENDING")
         case .activityTracker: return ("Activity Tracker", "Faction-wide participation and activity scan.", TornTheme.purple, "LEADERSHIP DATA PORT PENDING")
@@ -141,6 +147,8 @@ private struct CommandFeatureStatusView: View {
         case .moderation: return ("Reports & Moderation", "Faction chat reports and moderation queue.", TornTheme.red, "COMMUNITY BACKEND NOT WIRED")
         case .premium: return ("Premium", "Personal Premium and Faction Premium remain separate products.", TornTheme.gold, "ENTITLEMENT BACKEND NOT WIRED")
         case .feedback: return ("Feedback & Requests", "Bug reports, feature requests and usability notes.", TornTheme.purple, "FEEDBACK BACKEND NOT WIRED")
+        case .myDay, .factionOverview, .directory, .organizedCrime, .chain, .rankedWar:
+            return ("TornFCA", "Live Torn data", TornTheme.blue, "LIVE")
         case .leadershipPeople, .leadershipWarIntel, .leadershipFinance, .factionAdmin, .settings, .legal, .about:
             return ("TornFCA", "Command workspace", TornTheme.blue, "")
         }
