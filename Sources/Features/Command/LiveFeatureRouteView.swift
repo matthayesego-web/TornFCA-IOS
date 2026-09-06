@@ -12,6 +12,8 @@ struct LiveFeatureRouteView: View {
             TrainingCenterLiveView(session: session)
         case .resources:
             FactionResourcesLiveView(session: session)
+        case .warPrep:
+            WarPrepLiveView(session: session)
         default:
             FeatureRouteView(route: route, session: session)
         }
