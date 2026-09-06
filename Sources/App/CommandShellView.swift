@@ -51,7 +51,7 @@ struct CommandShellView: View {
             .background(TornTheme.background.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: FeatureRoute.self) { route in
-                FeatureRouteView(route: route, session: session)
+                LiveFeatureRouteView(route: route, session: session)
             }
         }
         .tint(TornTheme.gold2)
