@@ -6,12 +6,16 @@ struct AppRootView: View {
     var body: some View {
         switch appState.session {
         case .loading:
-            ProgressView("Connecting to Torn…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            ZStack {
+                Color(red: 3/255, green: 6/255, blue: 10/255).ignoresSafeArea()
+                ProgressView("Connecting to Torn…")
+                    .tint(.white)
+                    .foregroundStyle(.white)
+            }
         case .signedOut:
             SignInView()
-        case .signedIn(let profile):
-            RootTabView(profile: profile)
+        case .signedIn(let session):
+            RootTabView(profile: session.profile)
         }
     }
 }
